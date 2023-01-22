@@ -28,7 +28,7 @@ export const RHFCheckboxField = <T extends FieldValues>(
                 return (
                     <FormControl fullWidth error={!!error}>
                         <FormControlLabel
-                            control={<Checkbox id={id} checked={value} onChange={onChange} />}
+                            control={<Checkbox id={id} checked={value ?? false} onChange={onChange} />}
                             label={label}
                         />
                         <FormHelperText>{error ? error.message : null}</FormHelperText>

@@ -20,6 +20,8 @@ const updateCarSale = (
     res: NextApiResponse<Success | Error>
 ) => {
     THE_DATABASE = req.body
+    // probably not the best status code here
+    res.status(200).json({success: true})
 }
 
 const createCarSale = (
@@ -27,6 +29,8 @@ const createCarSale = (
     res: NextApiResponse<Success | Error>
 ) => {
     THE_DATABASE = req.body
+    // probably not the best status code here
+    res.status(200).json({success: true})
 }
 
 
@@ -35,7 +39,10 @@ const getCarSale = (
     res: NextApiResponse<Record<string, unknown> | Error>
 ) => {
     if ( THE_DATABASE ) {
-        return res.status(200).json(THE_DATABASE)
+        return res.status(200).json({
+            success: true,
+            data: THE_DATABASE
+        })
     } else {
         return res.status(500).json({
             success: false,
@@ -46,10 +53,12 @@ const getCarSale = (
 
 
 
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Success | Error | Record<string, unknown>>
 ) {
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
     switch(req.method) {
     case "PUT":
         return updateCarSale(req, res)

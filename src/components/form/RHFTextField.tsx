@@ -9,7 +9,7 @@ interface RHFTextFieldProps<K extends FieldValues> {
   control: Control<K, any>;
   name: Path<K>;
   label: string;
-  transformValue?: (value: string) => unknown;
+  parseOutput?: (value: string) => unknown;
   inputComponentProps?: TextFieldProps['InputProps']
 }
 
@@ -33,12 +33,15 @@ export const RHFTextField = <T extends FieldValues>(
                             //lets make it focusable
                             onChange={(ev) => {
                                 const eventValue = ev.target.value
-                                if (eventValue === "") {
-                                    return onChange(null)
-                                }
+                                // if we use null, in the number
+                                // field we might get errors. An empty
+                                // string makes sense here.
+                                // if (eventValue === "") {
+                                //     return onChange(null)
+                                // }
                                 onChange(
-                                    props.transformValue
-                                        ? props.transformValue(eventValue)
+                                    props.parseOutput
+                                        ? props.parseOutput(eventValue)
                                         : eventValue
                                 )
                             }}
