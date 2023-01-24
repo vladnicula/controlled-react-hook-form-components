@@ -129,11 +129,19 @@ export const CarSaleForm = (props: MUIComponentsFormProps) => {
                     options={[
                         {
                             id: "1",
-                            label: "Option 1"
+                            label: "Audi"
                         },
                         {
                             id: "2",
-                            label: "Option 2"
+                            label: "BMW"
+                        },
+                        {
+                            id: "3",
+                            label: "Volvo"
+                        },
+                        {
+                            id: "4",
+                            label: "Toyota"
                         }
                     ]}
                 />
@@ -146,15 +154,22 @@ export const CarSaleForm = (props: MUIComponentsFormProps) => {
                     options={[
                         {
                             id: "1",
-                            label: "Option 1"
+                            label: "Corolla"
                         },
                         {
                             id: "2",
-                            label: "Option 2"
+                            label: "Prius"
+                        },
+                        {
+                            id: "3",
+                            label: "RAV4"
+                        },
+                        {
+                            id: "4",
+                            label: "Mirai"
                         }
                     ]}
                 />
-                {/* </Box> */}
 
                 <Box>
                     <RHFCheckboxField
