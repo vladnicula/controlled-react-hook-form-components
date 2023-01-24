@@ -1,7 +1,24 @@
 import Head from 'next/head'
 import { CarSaleForm } from '@/src/CarSaleForm/CarSaleForm'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function NewCarSalePage() {
+
+    const [ asyncCheckBoxValue, setAsyncValue ] = useState<boolean | undefined>(undefined)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setAsyncValue(true)
+        }, 1000)
+    }, [])
+
+    const controlledFormValues = useMemo(() => {
+        return {
+            agreeToTerms: asyncCheckBoxValue ?? false
+        }
+    }, [asyncCheckBoxValue])
+
+
     return (
         <>
             <Head>
@@ -16,8 +33,11 @@ export default function NewCarSalePage() {
                     justifyContent: "center"
                 }}
             >
-                <CarSaleForm 
-                />
+                <div>
+                    <CarSaleForm
+                        values={controlledFormValues}
+                    />
+                </div>
             </div>
         </>
     )
