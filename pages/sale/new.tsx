@@ -5,18 +5,21 @@ import { useEffect, useMemo, useState } from 'react'
 export default function NewCarSalePage() {
 
     const [ asyncCheckBoxValue, setAsyncValue ] = useState<boolean | undefined>(undefined)
+    const [ asyncPrice, setAsyncPrice ] = useState<number | undefined>(undefined)
 
     useEffect(() => {
         setTimeout(() => {
             setAsyncValue(true)
+            setAsyncPrice(1000)
         }, 1000)
     }, [])
 
     const controlledFormValues = useMemo(() => {
         return {
-            agreeToTerms: asyncCheckBoxValue ?? false
+            agreeToTerms: asyncCheckBoxValue,
+            price: asyncPrice
         }
-    }, [asyncCheckBoxValue])
+    }, [asyncCheckBoxValue, asyncPrice])
 
 
     return (
